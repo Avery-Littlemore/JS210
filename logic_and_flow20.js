@@ -30,27 +30,30 @@
 //     - concat to return string
 //   - return new string
 
-const LOWERCASE_ASCII_START_NUM = 97;
-const LOWERCASE_ASCII_END_NUM = 122;
-const UPPERCASE_ASCII_START_NUM = 65;
-const UPPERCASE_ASCII_END_NUM = 90;
 
-function rot13(string) {
+const LOWERCASE_ASCII_START_NUM = 'a'.charCodeAt();
+const LOWERCASE_ASCII_END_NUM = 'z'.charCodeAt();
+const UPPERCASE_ASCII_START_NUM = 'A'.charCodeAt();
+const UPPERCASE_ASCII_END_NUM = 'Z'.charCodeAt();;
+
+function rotate(charCode, rotationAmount, maxCharCode) {
+  charCode += rotationAmount;
+  if (charCode > maxCharCode) {
+    charCode -= rotationAmount * 2;
+  }
+  return charCode;
+}
+
+function rot13(string, rotation=13) {
   let returnString = '';
   for (let i = 0; i < string.length; i += 1) {
     let charCode = string.charCodeAt(i);
     if (charCode < LOWERCASE_ASCII_END_NUM + 1 && charCode > LOWERCASE_ASCII_START_NUM - 1) {
-      charCode += 13;
-      if (charCode > LOWERCASE_ASCII_END_NUM) {
-        charCode -= 26;
-      }
+      charCode = rotate(charCode, rotation, LOWERCASE_ASCII_END_NUM);
     } else if (charCode < UPPERCASE_ASCII_END_NUM + 1 && charCode > UPPERCASE_ASCII_START_NUM - 1) {
-      charCode += 13;
-      if (charCode > UPPERCASE_ASCII_END_NUM) {
-        charCode -= 26;
-      }
+      charCode = rotate(charCode, rotation, UPPERCASE_ASCII_END_NUM);
     }
-    returnString = returnString.concat(String.fromCharCode(charCode))
+    returnString += String.fromCharCode(charCode);
   }
   return returnString;
 }
