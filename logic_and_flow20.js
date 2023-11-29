@@ -44,18 +44,26 @@ function rotate(charCode, rotationAmount, maxCharCode) {
   return charCode;
 }
 
+function isLowerCase(charCode) {
+  return charCode < LOWERCASE_ASCII_END_NUM + 1 && charCode > LOWERCASE_ASCII_START_NUM - 1;
+}
+
+function isUpperCase(charCode) {
+  return charCode < UPPERCASE_ASCII_END_NUM + 1 && charCode > UPPERCASE_ASCII_START_NUM - 1;
+}
+
 function rot13(string, rotation=13) {
-  let returnString = '';
+  let rotatedString = '';
   for (let i = 0; i < string.length; i += 1) {
     let charCode = string.charCodeAt(i);
-    if (charCode < LOWERCASE_ASCII_END_NUM + 1 && charCode > LOWERCASE_ASCII_START_NUM - 1) {
+    if (isLowerCase(charCode)) {
       charCode = rotate(charCode, rotation, LOWERCASE_ASCII_END_NUM);
-    } else if (charCode < UPPERCASE_ASCII_END_NUM + 1 && charCode > UPPERCASE_ASCII_START_NUM - 1) {
+    } else if (isUpperCase(charCode)) {
       charCode = rotate(charCode, rotation, UPPERCASE_ASCII_END_NUM);
     }
-    returnString += String.fromCharCode(charCode);
+    rotatedString += String.fromCharCode(charCode);
   }
-  return returnString;
+  return rotatedString;
 }
 
 console.log(rot13('Teachers open the door, but you must enter by yourself.'));
