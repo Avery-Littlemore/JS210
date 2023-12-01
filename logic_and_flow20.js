@@ -45,11 +45,21 @@ function rotate(charCode, rotationAmount, maxCharCode) {
 }
 
 function isLowerCase(charCode) {
-  return charCode < LOWERCASE_ASCII_END_NUM + 1 && charCode > LOWERCASE_ASCII_START_NUM - 1;
+  if (charCode < LOWERCASE_ASCII_END_NUM + 1) {
+    if (charCode > LOWERCASE_ASCII_START_NUM - 1) {
+      return true;
+    }
+  }
+  return false;
 }
 
 function isUpperCase(charCode) {
-  return charCode < UPPERCASE_ASCII_END_NUM + 1 && charCode > UPPERCASE_ASCII_START_NUM - 1;
+  if (charCode < UPPERCASE_ASCII_END_NUM + 1) {
+    if (charCode > UPPERCASE_ASCII_START_NUM - 1) {
+      return true;
+    }
+  }
+  return false;
 }
 
 function rot13(string, rotation=13) {
