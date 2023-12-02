@@ -34,7 +34,7 @@
 const LOWERCASE_ASCII_START_NUM = 'a'.charCodeAt();
 const LOWERCASE_ASCII_END_NUM = 'z'.charCodeAt();
 const UPPERCASE_ASCII_START_NUM = 'A'.charCodeAt();
-const UPPERCASE_ASCII_END_NUM = 'Z'.charCodeAt();;
+const UPPERCASE_ASCII_END_NUM = 'Z'.charCodeAt();
 
 function rotate(charCode, rotationAmount, maxCharCode) {
   charCode += rotationAmount;
@@ -45,24 +45,22 @@ function rotate(charCode, rotationAmount, maxCharCode) {
 }
 
 function isLowerCase(charCode) {
-  if (charCode < LOWERCASE_ASCII_END_NUM + 1) {
-    if (charCode > LOWERCASE_ASCII_START_NUM - 1) {
-      return true;
-    }
+  if (charCode < LOWERCASE_ASCII_END_NUM + 1 && 
+      charCode > LOWERCASE_ASCII_START_NUM - 1) {
+    return true;
   }
   return false;
 }
 
 function isUpperCase(charCode) {
-  if (charCode < UPPERCASE_ASCII_END_NUM + 1) {
-    if (charCode > UPPERCASE_ASCII_START_NUM - 1) {
-      return true;
-    }
+  if (charCode < UPPERCASE_ASCII_END_NUM + 1 &&
+      charCode > UPPERCASE_ASCII_START_NUM - 1) {
+    return true;
   }
   return false;
 }
 
-function rot13(string, rotation=13) {
+function rot13(string, rotation = 13) {
   let rotatedString = '';
   for (let i = 0; i < string.length; i += 1) {
     let charCode = string.charCodeAt(i);
